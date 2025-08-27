@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag "bookings", "data-turbo-track": "reload" %>
+
+<div class="booking-form">
+  <h1>Booking for <%= @flight.departure_airport.code %> →
+           <%= @flight.arrival_airport.code %></h1>
+
+  <%= form_with model: @booking, local: true do |f| %>
+    <%= f.hidden_field :flight_id, value: @flight.id %>
+
+    <h2>Passenger Details</h2>
+    <% @booking.passengers.each_with_index do |passenger, i| %>
+      <fieldset>
+        <legend>Passenger <%= i + 1 %></legend>
+
+        <%= f.fields_for :passengers, passenger do |pf| %>
+          <div>
+            <%= pf.label :name %>
+            <%= pf.text_field :name %>
+          </div>
+
+          <div>
+            <%= pf.label :email %>
+            <%= pf.email_field :email %>
+          </div>
+        <% end %>
+      </fieldset>
+    <% end %>
+
+    <%= f.submit "Confirm Booking" %>
+  <% end %>
+</div>
+

@@ -1,0 +1,94 @@
+/* flights.css */
+
+/* Container for search form */
+.flight-search {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fefefe;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Headings */
+.flight-search h1,
+.results h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+/* Labels + Select fields */
+.flight-search label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.flight-search select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+/* Search button */
+.flight-search input[type="submit"] {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.flight-search input[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+/* Flight results */
+.results {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fcfcfc;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.results ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.results li {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  background: #fafafa;
+  border-radius: 5px;
+}
+
+/* "Select Flight" button inside results */
+.results input[type="submit"] {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.results input[type="submit"]:hover {
+  background-color: #1e8449;
+}

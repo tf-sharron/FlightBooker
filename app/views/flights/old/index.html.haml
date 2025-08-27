@@ -1,0 +1,20 @@
+%p{:style => "color: blue"}= notice
+%h1 Flights
+#flights
+  - @flights.each do |flight|
+    = render flight
+    %p
+      = link_to "Show this flight", flight
+= link_to "New flight", new_flight_path
+
+
+%p{:style => "color: green"}= notice 
+%h1 Flights 
+#Flights
+    - @flights.each do |flight|
+
+        =render flight 
+    %p
+        =link_to "show this flight", flight 
+    = link_to "New flight", new_flight_path 
+

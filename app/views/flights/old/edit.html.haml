@@ -1,0 +1,7 @@
+%h1 Editing flight
+= render "form", flight: @flight
+%br/
+%div
+  = link_to "Show this flight", @flight
+  |
+  \#{link_to "Back to flights", flights_path}

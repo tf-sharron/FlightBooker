@@ -1,0 +1,31 @@
+= form_with(model: flight, class: "flight-form") do |form|
+  - if flight.errors.any?
+    .form-errors
+      %h2
+        = pluralize(flight.errors.count, "error")
+        prohibited this flight from being saved:
+      %ul
+        - flight.errors.each do |error|
+          %li= error.full_message
+
+  .form-group
+    = form.label :dep_airport
+    = form.select :dep_airport, ["BFS", "GIA", "LHR", "DUB"]
+
+  .form-group
+    = form.label :arr_airport
+    = form.select :arr_airport, ["NYC", "IBZ", "MIA", "LAO"]
+
+  .form-group
+    = form.label :dep_time
+    = form.datetime_field :dep_time
+
+  .form-group
+    = form.label :duration, "Duration in minutes"
+    = form.number_field :duration, step: 5
+
+  .form-actions
+    = form.submit "Save Flight"
+  
+.form-group 
+=form.label :dep_airport 

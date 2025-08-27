@@ -1,0 +1,58 @@
+<%= stylesheet_link_tag "flights", "data-turbo-track": "reload" %>
+
+<div class="flight-search">
+  <h1>✈️ Flight Booker</h1>
+
+  <%= form_with url: flights_path, method: :get, local: true do %>
+    <div>
+      <%= label_tag :departure_airport_id, "Departure Airport" %>
+      <%= select_tag :departure_airport_id,
+            options_from_collection_for_select(@airports, :id, :code, params[:departure_airport_id]) %>
+    </div>
+
+    <div>
+      <%= label_tag :arrival_airport_id, "Arrival Airport" %>
+      <%= select_tag :arrival_airport_id,
+            options_from_collection_for_select(@airports, :id, :code, params[:arrival_airport_id]) %>
+    </div>
+
+    <div>
+      <%= label_tag :date, "Date" %>
+      <%= select_tag :date,
+            options_for_select(@dates.map { |d| [d.strftime("%d/%m/%Y"), d] }, params[:date]) %>
+    </div>
+
+    <div>
+      <%= label_tag :passengers, "Number of Passengers" %>
+      <%= select_tag :passengers,
+            options_for_select([1,2,3,4], params[:passengers]) %>
+    </div>
+
+    <div>
+      <%= submit_tag "Search" %>
+    </div>
+  <% end %>
+</div>
+
+<% if @flights.any? %>
+  <div class="results">
+    <h2>Available Flights</h2>
+    <ul>
+      <% @flights.each do |flight| %>
+        <li>
+          <strong><%= flight.departure_airport.code %> → <%= flight.arrival_airport.code %></strong><br>
+          on <%= flight.date.strftime("%d/%m/%Y") %>  
+          (Duration: <%= flight.duration %> mins)
+
+          <%= form_with url: new_booking_path, method: :get, local: true do %>
+            <%= hidden_field_tag :flight_id, flight.id %>
+            <%= hidden_field_tag :passengers, @passengers %>
+            <%= submit_tag "Select Flight" %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% elsif params[:departure_airport_id].present? %>
+  <p style="text-align:center; color:#e74c3c;">No flights match your search.</p>
+<% end %>

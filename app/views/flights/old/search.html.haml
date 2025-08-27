@@ -1,0 +1,55 @@
+-no_of_pass = params[:passenger_numbeer] .presence || 1
+
+=form_with url: search_path, method: :get, loacal: true do 
+
+.field
+=label_tab :search, "Depsrture airport'
+=select_tag :search, options_from_collection_for_select(@results, :departure_airport_id, :departure_airport_id), 
+prompt: 'Select Departure'
+
+
+.field 
+=label_tab :arr_airport_search, "Arrival Airport"
+=select_tag :arr_airport_search, options_from_collection_for_select(@results, :arrival_airport_id,:arrival_airport_id), 
+prompt: 'Select Arrival'
+
+. field
+= label_tag :dep_time_search, "Departure Time" 
+= select_tag :dep_time_search, options_from_collection_for-select(@results, ;flight_time_formatted, :flight_timw_formatted), 
+prompt: 'Select Time' 
+
+  .field
+    = label_tag :passenger_number, "Number of Passengers"
+    = select_tag :passenger_number, options_for_select((1..6).to_a, no_of_pass), prompt: 'Select Passengers'
+
+  = submit_tag "Search", class: "btn btn-primary"
+
+%br
+%h3 Search Results
+
+- if @results.present?
+  - @results.each do |result|
+    %dl.flight-result
+      %dt Flight ID:
+      %dd= result.id
+
+      %dt Departure Airport:
+      %dd= result.departure_airport.airport_code
+
+      %dt Arrival Airport:
+      %dd= result.arrival_airport.airport_code
+
+      %dt Departure Time:
+      %dd= result.flight_time
+
+      %dt Duration:
+      %dd= "#{result.flight_duration} minutes"
+
+    %hr/
+- else
+  %p No flights found.
+
+= form_with url: new_booking_path, method: :get, local: true, html: { id: 'new_booking_form' } do |form|
+  = form.hidden_field :passenger_number, value: no_of_pass
+  = form.collection_radio_buttons :id, @results, :id, :departure_airport_code
+  = form.submit "Select Flight", class: "btn btn-success"

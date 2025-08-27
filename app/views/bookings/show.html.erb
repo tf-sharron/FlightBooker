@@ -1,0 +1,29 @@
+<%= stylesheet_link_tag "bookings", "data-turbo-track": "reload" %>
+
+<div class="booking-confirmation">
+  <h1>Booking Confirmation</h1>
+
+  <div class="booking-card">
+    <h2>Flight Details</h2>
+    <p>
+      <strong>From:</strong> <%= @booking.flight.departure_airport.code %> <br>
+      <strong>To:</strong>   <%= @booking.flight.arrival_airport.code %> <br>
+      <strong>Date:</strong> <%= @booking.flight.date.strftime("%d/%m/%Y") %> <br>
+      <strong>Duration:</strong> <%= @booking.flight.duration %> minutes
+    </p>
+  </div>
+
+  <div class="booking-card">
+    <h2>Passengers</h2>
+    <ul>
+      <% @booking.passengers.each do |p| %>
+        <li>
+          <strong>Name:</strong> <%= p.name %> <br>
+          <strong>Email:</strong> <%= p.email %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <%= link_to "Book Another Flight", flights_path, class: "btn" %>
+</div>

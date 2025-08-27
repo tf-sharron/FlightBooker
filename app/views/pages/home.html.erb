@@ -1,0 +1,33 @@
+<div class="main">
+  <div class="container">
+    <h1>✈️ Flight Booker</h1>
+    <p>Where would you like to go?</p>
+
+    <%= form_with url: "/submit", method: :post do %>
+      <div>
+        <%= label_tag :dropdown1, "Select Departure Airport" %>
+        <%= select_tag :dropdown1, options_for_select(["BFS", "GLA", "LHR", "DUB"]) %>
+      </div>
+
+      <div>
+        <%= label_tag :dropdown2, "Select Arrival Airport" %>
+        <%= select_tag :dropdown2, options_for_select(["NYC", "IBZ", "MIA", "LAX"]) %>
+      </div>
+
+      <div>
+        <%= label_tag :dropdown3, "Select Date" %>
+        <%= select_tag :dropdown3, options_for_select(["14/08/2025", "27/08/2025", "30/08/2025", "27/05/2026"]) %>
+      </div>
+
+      <div>
+        <%= label_tag :dropdown4, "Number of Passengers" %>
+        <%= select_tag :dropdown4, options_for_select(["1", "2", "3", "4"]) %>
+      </div>
+
+      <div>
+        <%= submit_tag "Book Flight" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
