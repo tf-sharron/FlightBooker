@@ -1,4 +1,4 @@
-Flight Booker- Small coding task 
+✈️Flight Booker- Small coding task 
 
 A ruby on rails project where users can search for flights, sect one, enter passenger details, and confirm a booking.
 
